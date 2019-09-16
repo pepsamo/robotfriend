@@ -7,14 +7,22 @@ class App extends Component {
     constructor() {
         super()
         this.state= {
-            robots: robots
+            robots: robots,
+            searchValue: ''
         }
     }
+
+    searchRobot(event) {
+        console.log(event.target.value);
+    }
+        
     render() {
         return(
             <div className="tc">
                 <h1>Robot Friends</h1>
-                <SearchBox />
+                <SearchBox
+                    toInput = {this.searchRobot}
+                    value={this.state.searchValue}/>
                 <CardList robots = {this.state.robots} />
             </div>
         )
