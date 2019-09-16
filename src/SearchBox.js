@@ -6,6 +6,7 @@ const SearchBox = ({searchValue ,toInput}) => (
             className = 'bg-lightest-blue bn pa2'
             type = 'search'
              placeholder="Search robot..."
+             value = {searchValue}
              onCnhange = {toInput} />
         </div>
     );
