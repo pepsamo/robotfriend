@@ -1,17 +1,29 @@
 import React, {Component} from 'react';
 import CardList from './CardList';
-import {robots} from './robots';
 import SearchBox from './SearchBox';
 
 class App extends Component {
     constructor() {
         super()
-        this.state= {
+        this.state = {
             robots: [],
             searchValue: ""
         }
 
     }
+
+componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => {
+        return response.json();
+    })
+    .then(users => {
+        this.setState({
+            robots: users
+        });
+    });
+}
+
 searchRobot = (event)  => {
     this.setState({
         searchValue: event.target.value
@@ -22,7 +34,7 @@ searchRobot = (event)  => {
     render() {
         const filterRobot = this.state.robots.filter(robot => {
             return robot.name.toLowerCase().includes(this.state.searchValue.toLowerCase());
-        })
+        });
         return(
             <div className="tc">
                 <h1>Robot Friends</h1>
