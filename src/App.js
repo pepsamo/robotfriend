@@ -33,16 +33,20 @@ searchRobot = (event)  => {
         const filterRobot = this.state.robots.filter(robot => {
             return robot.name.toLowerCase().includes(this.state.searchValue.toLowerCase());
         });
-        return(
-            <div className="tc">
-                <h1>Robot Friends</h1>
-                <SearchBox
-                    toInput = {this.searchRobot}
-                        setValue = {this.state.searchValue}
-                    />
-                <CardList robots = {filterRobot} />
-            </div>
-        )
+        if(this.state.robots.length === 0) {
+            return <h1>Loadng...</h1>
+        } else {
+            return(
+                <div className="tc">
+                    <h1>Robot Friends</h1>
+                    <SearchBox
+                        toInput = {this.searchRobot}
+                            setValue = {this.state.searchValue}
+                        />
+                    <CardList robots = {filterRobot} />
+                </div>
+            )
+        }
     }
 };
 
